@@ -7,7 +7,6 @@ using CounterStrikeSharp.API.Modules.Cvars;
 using CounterStrikeSharp.API.Modules.Menu;
 using CounterStrikeSharp.API.Modules.Timers;
 using CounterStrikeSharp.API.Modules.Utils;
-using McMaster.NETCore.Plugins;
 using Timer = CounterStrikeSharp.API.Modules.Timers.Timer;
 
 namespace VoteExtend;
@@ -41,7 +40,7 @@ public class VoteExtend : BasePlugin, IPluginConfig<Config>
     private int _yesCount = 0;
     private int _noCount = 0;
 
-    public void Load(bool hotReload)
+    public override void Load(bool hotReload)
     {
         RegisterListener<Listeners.OnMapStart>(OnMapStart);
     }
@@ -106,7 +105,7 @@ public class VoteExtend : BasePlugin, IPluginConfig<Config>
         {
             _totalExtends++;
             var timelimitConVar = ConVar.Find("mp_timelimit");
-            var timeLimit = timelimitConVar.GetPrimitiveValue<float>();
+            var timeLimit = timelimitConVar?.GetPrimitiveValue<float>() ?? 20;
             var newTimeLimit = timeLimit + Config.ExtendTime;
             Server.PrintToChatAll($" {ChatColors.Magenta}[VE] {ChatColors.Default}The map has been extend by {Config.ExtendTime} minutes[{_totalExtends}/{Config.MaximumExtends}]");
             Server.ExecuteCommand($"mp_timelimit {newTimeLimit}");
