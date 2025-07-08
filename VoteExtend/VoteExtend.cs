@@ -85,9 +85,9 @@ public class VoteExtend : BasePlugin, IPluginConfig<Config>
         foreach (var player in Utilities.GetPlayers().Where(con => !con.IsBot))
         {
             var menu = new ChatMenu("Vote Extend");
-            menu.AddMenuOption("Yes", (voter, option) => { Server.PrintToChatAll($" {ChatColors.Magenta}[VE] {ChatColors.Green}{voter?.PlayerName ?? "Console"} {ChatColors.Default} has voted {ChatColors.Green}yes{ChatColors.Default}[{_yesCount}/{_yesCount+_noCount}.");
+            menu.AddMenuOption("Yes", (voter, option) => { Server.PrintToChatAll($" {ChatColors.Magenta}[VE] {ChatColors.Green}{voter?.PlayerName ?? "Console"} {ChatColors.Default} has voted {ChatColors.Green}yes{ChatColors.Default}[{_yesCount}/{_yesCount+_noCount}].");
                 _yesCount++; MenuManager.CloseActiveMenu(player); });
-            menu.AddMenuOption("No", (voter, option) => { Server.PrintToChatAll($" {ChatColors.Magenta}[VE] {ChatColors.Green}{voter?.PlayerName ?? "Console"} {ChatColors.Default} has voted {ChatColors.LightRed}no{ChatColors.Default}[{_yesCount}/{_yesCount+_noCount}.");
+            menu.AddMenuOption("No", (voter, option) => { Server.PrintToChatAll($" {ChatColors.Magenta}[VE] {ChatColors.Green}{voter?.PlayerName ?? "Console"} {ChatColors.Default} has voted {ChatColors.LightRed}no{ChatColors.Default}[{_yesCount}/{_yesCount+_noCount}].");
                 _noCount++; MenuManager.CloseActiveMenu(player); });
             MenuManager.OpenChatMenu(player, menu);
         }
