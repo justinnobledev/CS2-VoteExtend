@@ -101,6 +101,11 @@ public class VoteExtend : BasePlugin, IPluginConfig<Config>
         var percentage = (float) _yesCount / totalVotes;
         _extendDelayTimer = AddTimer(Config.ExtendDelay, () => { _extendDelayTimer = null; Server.PrintToChatAll($" {ChatColors.Magenta}[VE] {ChatColors.Default}You can now create a vote to extend the map");}, TimerFlags.STOP_ON_MAPCHANGE);
 
+        foreach (var controller in Utilities.GetPlayers())
+        {
+            MenuManager.CloseActiveMenu(controller);
+        }
+
         if (percentage >= Config.VotePassPercentage)
         {
             _totalExtends++;
