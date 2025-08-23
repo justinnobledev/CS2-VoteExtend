@@ -23,7 +23,7 @@ public class Config : BasePluginConfig
 public class VoteExtend : BasePlugin, IPluginConfig<Config>
 {
     public override string ModuleName { get; } = "Vote Extend";
-    public override string ModuleVersion { get; } = "1.0";
+    public override string ModuleVersion { get; } = "1.1";
     public override string ModuleAuthor { get; } = "Retro";
     public override string ModuleDescription { get; } = "Creates a vote to extend the current map";
     
